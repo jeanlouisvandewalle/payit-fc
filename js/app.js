@@ -358,7 +358,7 @@
           <div class="hero-copy">
             <p class="kicker">Est. ${D.club.opgericht} · ${D.club.gemeente}</p>
             <h1 class="display hero-title">
-              <span class="outline">${esc(D.club.slogan[0].split(" ").slice(0, 2).join(" "))}</span>
+              <span class="accent">${esc(D.club.slogan[0].split(" ").slice(0, 2).join(" "))}</span>
               <span>${esc(D.club.slogan[0].split(" ").slice(2).join(" "))}</span>
               <span class="accent">${esc(D.club.slogan[1].split(" ").slice(0, 2).join(" "))}</span>
               <span>${esc(D.club.slogan[1].split(" ").slice(2).join(" "))}</span>

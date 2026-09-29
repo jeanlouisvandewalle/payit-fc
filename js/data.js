@@ -36,7 +36,7 @@ window.PAYIT = {
     { naam: "Artuur Callebert",       foto: "images/spelers/artuur-callebert.webp" },
     { naam: "Arthur De Fauw",         foto: "images/spelers/arthur-de-fauw.webp" },
     { naam: "Achiel Denijs",          foto: "images/spelers/achiel-denijs.webp" },
-    { naam: "Milan Deryckere",        foto: "images/spelers/milan-deryckere.webp" },
+    { naam: "Milan Deryckere",        foto: "images/spelers/milan-deryckere-sport-v3.webp" },
     { naam: "Jelle Descheemaecker",   foto: "images/spelers/jelle-descheemaecker.webp" },
     { naam: "Pierre Dubuisson",       foto: "images/spelers/pierre-dubuisson.webp" },
     { naam: "Ilias Godefroo",         foto: "images/spelers/ilias-godefroo.webp" },

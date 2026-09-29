@@ -7,7 +7,7 @@ Clubwebsite van PAYIT FC, minivoetbal uit Izegem. Gewone HTML/CSS/JavaScript: ge
 | Pagina | Bestand |
 |---|---|
 | Home (stand, volgende match met aftelklok, topschutters, verslagen, selectie, sponsors) | `index.html` |
-| Wedstrijden (kalender, klassement van alle MVBI-reeksen, uitslagen met doelpuntenmakers) | `wedstrijden.html` |
+| Wedstrijden (kalender, klassement van de volledige competitie, uitslagen met doelpuntenmakers) | `wedstrijden.html` |
 | Ploeg (selectie met foto's, topschutters-podium, Payit Player of the Match) | `ploeg.html` |
 | Blog (matchverslagen) | `blog.html` + `artikel.html?id=…` |
 | Sponsors | `sponsors.html` |
@@ -65,7 +65,7 @@ Logo in `images/` zetten (liefst 600×300 px) en een item toevoegen in `sponsors
 
 ## Klassement (automatisch)
 
-Het klassement van alle reeksen wordt opgehaald van [mvbi.be/klassement](https://www.mvbi.be/klassement) en bewaard in `js/klassement.js`.
+Het klassement wordt opgehaald van [mvbi.be/klassement](https://www.mvbi.be/klassement) en bewaard in `js/klassement.js`. MVBI verdeelt de ploegen over "Reeks 1" en "Reeks 2"; het script voegt die samen tot één klassement "Competitie" (gesorteerd op punten, bij gelijke punten in de volgorde van MVBI).
 
 - **Eens de site op GitHub staat:** GitHub Actions werkt het klassement elke dag automatisch bij (twee keer per dag, 's ochtends en 's avonds). Meteen bijwerken kan via het tabblad **Actions → Klassement bijwerken → Run workflow**.
 - **Op je eigen computer:** `node scripts/update-klassement.mjs`

@@ -18,7 +18,7 @@ window.PAYIT = {
     afkorting: "IZG",
     opgericht: 2026,
     seizoen: "2026/27",
-    reeks: "Reeks 1",
+    reeks: "Competitie",
     slogan: ["Voetbal op ons niveau.", "Ambitie op wereldniveau."],
     tagline: "Talent wisselvallig. Sfeer gegarandeerd.",
     instagram: "https://www.instagram.com/payit.football/",
@@ -165,7 +165,7 @@ window.PAYIT = {
         <p>De trofee van de avond gaat naar <strong>Rafael Verhamme</strong>. Vier goals, veel loopwerk en voor één avond officieel de beste van de ploeg. Dat zullen we in de kleedkamer nog geweten hebben.</p>
 
         <h3>En nu?</h3>
-        <p>Drie op drie, 39 goals voor en 5 tegen. In het klassement van Reeks 1 staan we tweede, en nog altijd ongeslagen. Een prima begin; de champagne blijft voorlopig gewoon in de frigo. Volgende opdracht: FC de Ondank, op donderdag 8 oktober om 18 uur in Izegem.</p>
+        <p>Drie op drie, 39 goals voor en 5 tegen. In het klassement staan we tweede, en nog altijd ongeslagen. Een prima begin; de champagne blijft voorlopig gewoon in de frigo. Volgende opdracht: FC de Ondank, op donderdag 8 oktober om 18 uur in Izegem.</p>
       `
     },
     {

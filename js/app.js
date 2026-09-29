@@ -288,25 +288,34 @@
   const K = window.PAYIT_KLASSEMENT;
   const onzeReeks = () => K?.reeksen.find((r) => r.rijen.some((x) => isUs(x[0])));
 
-  function standTable(reeks) {
+  function standTable(reeks, max) {
+    // max: enkel de eerste plaatsen tonen (PAYIT FC blijft altijd zichtbaar)
+    let rijen = reeks.rijen.map((r, i) => [r, i]);
+    if (max && rijen.length > max) {
+      const ons = rijen.find(([r]) => isUs(r[0]));
+      rijen = rijen.slice(0, max);
+      if (ons && ons[1] >= max) rijen.push(null, ons);
+    }
+    const kolommen = 10;
     return `
       <div class="table-wrap">
         <table class="standings">
           <thead><tr><th>#</th><th class="l">Ploeg</th><th title="Matchen">M</th><th title="Winst">W</th><th title="Gelijk">G</th><th title="Verlies">V</th><th class="hide-sm" title="Doelpunten voor">DV</th><th class="hide-sm" title="Doelpunten tegen">DT</th><th title="Doelsaldo">DS</th><th>Ptn</th></tr></thead>
-          <tbody>${reeks.rijen.map((r, i) => {
-            const ds = r[5] - r[6];
+          <tbody>${rijen.map((x) => {
+            if (!x) return `<tr><td colspan="${kolommen}" class="muted">…</td></tr>`;
+            const [r, i] = x, ds = r[5] - r[6];
             return `<tr class="${isUs(r[0]) ? "us" : ""}"><td>${i + 1}</td><td class="l">${isUs(r[0]) ? CLUB : esc(r[0])}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td class="hide-sm">${r[5]}</td><td class="hide-sm">${r[6]}</td><td>${ds > 0 ? "+" : ""}${ds}</td><td><b>${r[7]}</b></td></tr>`;
           }).join("")}</tbody>
         </table>
       </div>`;
   }
 
-  function klassement({ alleen = false } = {}) {
+  function klassement({ alleen = false, max } = {}) {
     if (!K || !K.reeksen.length) return `<p class="muted">Klassement niet beschikbaar. <a class="link-arrow" href="https://www.mvbi.be/klassement" target="_blank" rel="noopener">Bekijk op MVBI ${I.ext}</a></p>`;
     const eigen = onzeReeks() || K.reeksen[0];
     const lijst = alleen ? [eigen] : [eigen, ...K.reeksen.filter((r) => r !== eigen)];
     const note = `<p class="table-note">Bron: <a href="${esc(K.bron)}" target="_blank" rel="noopener">MVBI</a> · bijgewerkt ${fmtShort(K.bijgewerkt)} · M matchen · W winst · G gelijk · V verlies · DV/DT doelpunten voor/tegen · DS doelsaldo</p>`;
-    if (lijst.length === 1) return standTable(lijst[0]) + note;
+    if (lijst.length === 1) return standTable(lijst[0], max) + note;
     return `
       <div class="tabs" role="tablist">${lijst.map((r, i) => `<button role="tab" class="tab" aria-selected="${i === 0}" data-tab="k${i}">${esc(r.naam)}${r === eigen ? ' <span class="tab-us">onze reeks</span>' : ""}</button>`).join("")}</div>
       ${lijst.map((r, i) => `<div class="tab-panel" data-panel="k${i}" ${i ? "hidden" : ""}>${standTable(r)}</div>`).join("")}
@@ -373,8 +382,8 @@
             ${playedDesc[0] ? resultCard(playedDesc[0]) : ""}
           </div>
           <div class="mt home-stand">
-            <div class="section-head sm"><p class="kicker">Klassement ${esc(onzeReeks()?.naam || D.club.reeks)}</p><a class="link-arrow" href="wedstrijden.html#stand">Alle reeksen ${I.arrow}</a></div>
-            ${klassement({ alleen: true })}
+            <div class="section-head sm"><p class="kicker">Klassement ${esc(onzeReeks()?.naam || D.club.reeks)}</p><a class="link-arrow" href="wedstrijden.html#stand">Volledig klassement ${I.arrow}</a></div>
+            ${klassement({ alleen: true, max: 8 })}
           </div>
         </div>
       </section>

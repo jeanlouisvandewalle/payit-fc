@@ -4,7 +4,7 @@ window.PAYIT_KLASSEMENT = {
   "bijgewerkt": "2026-09-29",
   "reeksen": [
     {
-      "naam": "Reeks 1",
+      "naam": "Competitie",
       "rijen": [
         ["Orthopedie Van Parys", 4, 3, 0, 1, 40, 10, 9],
         ["PayitFC", 3, 3, 0, 0, 39, 5, 9],
@@ -15,16 +15,10 @@ window.PAYIT_KLASSEMENT = {
         ["T'Bloemgat", 2, 2, 0, 0, 14, 5, 6],
         ["MVC De Lagaar - Gworks", 2, 1, 0, 1, 8, 9, 3],
         ["L'Abattoir", 2, 0, 0, 2, 6, 17, 0],
-        ["Driemo", 0, 0, 0, 0, 0, 0, 0]
-      ]
-    },
-    {
-      "naam": "Reeks 2",
-      "rijen": [
+        ["Driemo", 0, 0, 0, 0, 0, 0, 0],
         ["BTW Boys", 0, 0, 0, 0, 0, 0, 0],
         ["Checked by Vanhulle", 0, 0, 0, 0, 0, 0, 0],
         ["De Kasjotters", 0, 0, 0, 0, 0, 0, 0],
-        ["Driemo", 0, 0, 0, 0, 0, 0, 0],
         ["FC De Ondank", 0, 0, 0, 0, 0, 0, 0],
         ["FC Elk 'T Zinne", 0, 0, 0, 0, 0, 0, 0],
         ["FC Plectrum", 0, 0, 0, 0, 0, 0, 0],

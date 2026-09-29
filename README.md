@@ -101,7 +101,7 @@ en surf naar http://localhost:8080.
 1. Maak op github.com een nieuwe repository (bv. `payit-fc`).
 2. Push deze map naar die repository.
 3. Ga op GitHub naar **Settings → Pages**, kies **Deploy from a branch**, branch `main`, map `/ (root)`, en klik **Save**.
-4. Na een minuutje staat de site op `https://<gebruikersnaam>.github.io/payit-fc/`.
+4. Na een minuutje staat de site online. De site draait op het eigen domein **https://payitfc.be** (DNS bij Combell, bestand `CNAME` in deze map — niet verwijderen).
 
 Een eigen domeinnaam (bv. `payitfc.be`) kan je later koppelen via hetzelfde Pages-scherm.
 

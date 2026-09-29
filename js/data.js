@@ -107,8 +107,7 @@ window.PAYIT = {
   sponsors: [
     {
       naam: "Payit", hoofd: true,
-      logo: "images/sponsor-payit.svg",   // officieel logo in kleur (vector)
-      licht: true,                         // logo heeft donkere tekst → tonen op witte achtergrond
+      logo: "images/sponsor-payit.svg",   // officieel logo: blauw icoon + witte tekst (voor donkere achtergrond)
       url: "https://www.payit.be/nl",
       tekst: "Maakt inschrijvingen, ticketing en online betalingen voor organisaties een pak eenvoudiger. Onze naamgever en trouwe supporter."
     },

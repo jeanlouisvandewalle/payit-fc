@@ -96,7 +96,7 @@
     return `
     <section class="sponsor-strip" aria-label="Onze partners">
       <div class="marquee"><div class="marquee-track">
-        ${[...D.sponsors, ...D.sponsors].map((s, i) => `<a href="${esc(s.url)}" target="_blank" rel="noopener" ${i >= D.sponsors.length ? 'aria-hidden="true" tabindex="-1"' : ""}><img src="${esc(s.logo)}" alt="${esc(s.naam)}" loading="lazy"></a>`).join("")}
+        ${[...D.sponsors, ...D.sponsors].map((s, i) => `<a href="${esc(s.url)}" target="_blank" rel="noopener"${s.licht ? ' class="licht"' : ""} ${i >= D.sponsors.length ? 'aria-hidden="true" tabindex="-1"' : ""}><img src="${esc(s.logo)}" alt="${esc(s.naam)}" loading="lazy"></a>`).join("")}
       </div></div>
     </section>
     <footer class="site-footer">
@@ -275,7 +275,7 @@
   function sponsorCard(s, i) {
     return `
       <a class="card sponsor-card ${s.hoofd ? "main" : ""}" href="${esc(s.url)}" target="_blank" rel="noopener">
-        <div class="sponsor-logo"><img src="${esc(s.logo)}" alt="${esc(s.naam)}" loading="lazy"></div>
+        <div class="sponsor-logo${s.licht ? " licht" : ""}"><img src="${esc(s.logo)}" alt="${esc(s.naam)}" loading="lazy"></div>
         <div class="sponsor-body">
           <p class="kicker">${s.hoofd ? "Main partner" : "Partner " + String(i + 1).padStart(2, "0")}</p>
           <h3>${esc(s.naam)}</h3>

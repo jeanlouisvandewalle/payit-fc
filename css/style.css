@@ -512,3 +512,11 @@ a:hover .link-arrow svg, .link-arrow:hover svg { transform: translateX(3px); }
 .section-head.sm .kicker { margin: 0; }
 .home-stand { margin-top: 2.5rem; }
 .crown-list b { display: inline-flex; align-items: baseline; white-space: nowrap; }
+
+/* vectorlogo's (svg): volledig tonen, nooit bijsnijden of vervormen */
+.sponsor-logo img[src$=".svg"], .marquee-track img[src$=".svg"] { object-fit: contain; padding: 12% 14%; }
+.sponsor-card.main .sponsor-logo img[src$=".svg"] { padding: 14% 12%; }
+.sponsor-card:hover .sponsor-logo img[src$=".svg"] { transform: none; }
+/* logo's met donkere tekst op een wit vlak tonen */
+.sponsor-logo.licht, .marquee-track a.licht { background: #fff; }
+.marquee-track a.licht { opacity: 1; }

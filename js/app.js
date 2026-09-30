@@ -595,6 +595,13 @@
   main.innerHTML = (pages[page] || pages.home)();
   main.insertAdjacentHTML("afterend", footer());
 
+  /* klikken tellen in GoatCounter: sponsors, Instagram en MVBI */
+  document.querySelectorAll('a[target="_blank"]').forEach((a) => {
+    const sp = D.sponsors.find((s) => a.href === new URL(s.url, location.href).href);
+    const naam = sp ? `Klik: sponsor ${sp.naam}` : /instagram\.com/.test(a.href) ? "Klik: Instagram" : /mvbi\.be/.test(a.href) ? "Klik: MVBI" : null;
+    if (naam) { a.dataset.goatcounterClick = naam; a.dataset.goatcounterTitle = naam; }
+  });
+
   /* menu */
   const btn = $(".menu-btn"), navEl = $("#main-nav");
   btn.addEventListener("click", () => {

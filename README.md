@@ -70,6 +70,18 @@ Het klassement wordt opgehaald van [mvbi.be/klassement](https://www.mvbi.be/klas
 - **Eens de site op GitHub staat:** GitHub Actions werkt het klassement elke dag automatisch bij (twee keer per dag, 's ochtends en 's avonds). Meteen bijwerken kan via het tabblad **Actions → Klassement bijwerken → Run workflow**.
 - **Op je eigen computer:** `node scripts/update-klassement.mjs`
 
+## Bezoekersstatistieken
+
+De site meet bezoekers met **GoatCounter** (geen cookies, geen persoonsgegevens, dus geen cookiebanner nodig).
+Dashboard: **https://payitfc.goatcounter.com** (inloggen met het GoatCounter-account van de club).
+
+- **Pages:** hoeveel bezoekers per pagina en per verslag.
+- **Referrers:** waar bezoekers vandaan komen (Instagram, Google, …).
+- **Browsers / Systems / Sizes / Locations:** toestel, schermgrootte en land.
+- **Klikken:** verschijnen als `Klik: sponsor Payit`, `Klik: Instagram`, `Klik: MVBI`, … (ingesteld in `js/app.js`).
+
+Bezoeken vanaf `localhost` (lokaal testen) worden niet meegeteld.
+
 ## Hoe pas ik later iets aan?
 
 **Optie 1 — rechtstreeks op github.com (makkelijkst, geen installatie nodig)**

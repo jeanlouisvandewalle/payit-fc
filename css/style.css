@@ -520,3 +520,9 @@ a:hover .link-arrow svg, .link-arrow:hover svg { transform: translateX(3px); }
 /* logo's met donkere tekst op een wit vlak tonen */
 .sponsor-logo.licht, .marquee-track a.licht { background: #fff; }
 .marquee-track a.licht { opacity: 1; }
+
+/* Vooraf gegenereerde HTML: wat straks infadet (zie "reveal-animaties" in js/app.js) blijft
+   onzichtbaar tot het script geladen is, zodat de inhoud niet eerst kort opflitst. */
+@media (prefers-reduced-motion: no-preference) {
+  .js :is(.section-head, .card, .player, .fixture, .stat-band > div, .podium-step, .chip):not(.reveal) { opacity: 0; }
+}

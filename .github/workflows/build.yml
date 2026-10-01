@@ -1,0 +1,41 @@
+# Genereert na elke wijziging de HTML van alle pagina's (index.html, blog-….html, sitemap.xml, …)
+# zodat zoekmachines de inhoud kunnen lezen zonder JavaScript. Zie scripts/build.mjs.
+# Handmatig starten kan ook: tabblad "Actions" op GitHub → "Pagina's genereren" → "Run workflow".
+name: Pagina's genereren
+
+on:
+  push:
+    branches: [main]
+    paths: ["js/**", "scripts/**", "CNAME"]
+  schedule:
+    - cron: "30 3 * * *"   # elke nacht: houdt "volgende match" juist ook zonder wijzigingen
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-bijwerken
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/build.mjs
+      - name: Wijzigingen opslaan
+        run: |
+          git add -A -- '*.html' sitemap.xml
+          if git diff --cached --quiet; then
+            echo "Geen wijzigingen."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898702+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Pagina's opnieuw gegenereerd"
+          git pull --rebase
+          git push

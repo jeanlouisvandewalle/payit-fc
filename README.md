@@ -1,6 +1,6 @@
 # PAYIT FC — website
 
-Clubwebsite van PAYIT FC, minivoetbal uit Izegem. Gewone HTML/CSS/JavaScript: geen installatie of build nodig, en gratis te hosten op GitHub Pages.
+Clubwebsite van PAYIT FC, minivoetbal uit Izegem. Gewone HTML/CSS/JavaScript, gratis gehost op GitHub Pages. Je past enkel `js/data.js` aan; GitHub genereert daarna zelf de HTML-pagina's (zie [Vooraf gegenereerde pagina's](#vooraf-gegenereerde-paginas)).
 
 ## Pagina's
 
@@ -9,7 +9,7 @@ Clubwebsite van PAYIT FC, minivoetbal uit Izegem. Gewone HTML/CSS/JavaScript: ge
 | Home (stand, volgende match met aftelklok, topschutters, verslagen, selectie, sponsors) | `index.html` |
 | Wedstrijden (kalender, klassement van de volledige competitie, uitslagen met doelpuntenmakers) | `wedstrijden.html` |
 | Ploeg (selectie met foto's, topschutters-podium, Payit Player of the Match) | `ploeg.html` |
-| Blog (matchverslagen) | `blog.html` + `artikel.html?id=…` |
+| Blog (matchverslagen) | `blog.html` + één pagina per verslag: `blog-<id>.html` |
 | Sponsors | `sponsors.html` |
 | Over ons | `over-ons.html` |
 
@@ -70,6 +70,20 @@ Het klassement wordt opgehaald van [mvbi.be/klassement](https://www.mvbi.be/klas
 - **Eens de site op GitHub staat:** GitHub Actions werkt het klassement elke dag automatisch bij (twee keer per dag, 's ochtends en 's avonds). Meteen bijwerken kan via het tabblad **Actions → Klassement bijwerken → Run workflow**.
 - **Op je eigen computer:** `node scripts/update-klassement.mjs`
 
+## Vooraf gegenereerde pagina's
+
+Zoekmachines, WhatsApp-previews en AI-assistenten lezen meestal geen JavaScript. Daarom zet `scripts/build.mjs` de inhoud uit `js/data.js` vooraf in de HTML-bestanden.
+
+- **Automatisch:** na elke wijziging aan `js/` of `scripts/` draait de GitHub Action *Pagina's genereren* en zet ze de nieuwe HTML online (duurt een minuut of twee). Ze draait ook elke nacht, en mee met de klassement-update.
+- **Op je eigen computer:** `node scripts/build.mjs`
+- **Niet met de hand aanpassen:** `index.html`, `wedstrijden.html`, `ploeg.html`, `blog.html`, `sponsors.html`, `over-ons.html`, `artikel.html`, `404.html`, alle `blog-….html` en `sitemap.xml`. Ze worden bij elke build overschreven. De opmaak van de pagina's zit in `js/app.js`; de `<head>` (titel, beschrijving, deel-afbeelding, structured data) in `scripts/build.mjs` en onderaan `js/app.js` (`seo()`).
+- Elk verslag krijgt een eigen adres, bv. `https://payitfc.be/blog-speeldag-3-kasjotters.html`. Oude links (`artikel.html?id=…`) sturen automatisch door. Verander de `id` van een gepubliceerd verslag dus liever niet meer.
+- Loopt de Action eens niet, dan blijft de site gewoon werken: de browser merkt dat de HTML achterloopt op `data.js` en bouwt de pagina zelf opnieuw op.
+- `robots.txt` en `sitemap.xml` vertellen zoekmachines welke pagina's er zijn. Meld de sitemap één keer aan in [Google Search Console](https://search.google.com/search-console).
+
+### Clubwapen
+Het wapen staat in drie formaten in `images/` (`crest-160.webp`, `crest-480.webp`, `crest-960.webp`), plus `apple-touch-icon.png` en de deel-afbeelding `og-payit-fc.jpg` (1200×630). Verandert het wapen, maak dan deze vijf opnieuw vanuit `payit-crest-clean.png`.
+
 ## Bezoekersstatistieken
 
 De site meet bezoekers met **GoatCounter** (geen cookies, geen persoonsgegevens, dus geen cookiebanner nodig).
@@ -87,7 +101,7 @@ Bezoeken vanaf `localhost` (lokaal testen) worden niet meegeteld.
 **Optie 1 — rechtstreeks op github.com (makkelijkst, geen installatie nodig)**
 1. Open de repository op github.com en klik op `js/data.js`.
 2. Klik op het potloodje (✏️ *Edit this file*) en pas aan wat je wil.
-3. Klik op **Commit changes**. Binnen een minuut staat de wijziging online.
+3. Klik op **Commit changes**. Binnen een paar minuten staat de wijziging online.
 4. Foto toevoegen: open de map `images/spelers`, klik **Add file → Upload files** en sleep de foto erin.
 
 **Optie 2 — op je computer met GitHub Desktop**
@@ -102,7 +116,7 @@ Open Claude Code in deze map en zeg bv. *"Speeldag 4: 8–3 winst tegen FC de On
 
 ## Lokaal bekijken
 
-Dubbelklik `index.html`, of voor een lokale server:
+Dubbelklik `index.html`, of voor een lokale server (voeg je een nieuw verslag toe, draai dan eerst `node scripts/build.mjs`, anders bestaat de pagina van dat verslag nog niet):
 ```bash
 python -m http.server 8080
 ```

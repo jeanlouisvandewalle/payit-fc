@@ -1,9 +1,14 @@
 /* PAYIT FC — rendering van alle pagina's op basis van js/data.js.
-   Normaal hoef je hier niets aan te veranderen. */
+   Normaal hoef je hier niets aan te veranderen.
+   Dit bestand draait in de browser én in scripts/build.mjs, dat de HTML vooraf
+   genereert zodat zoekmachines de inhoud zonder JavaScript kunnen lezen. */
 (function () {
   const D = window.PAYIT;
   const CLUB = D.club.naam;
-  const page = document.body.dataset.page;
+  const DOM = typeof document !== "undefined";
+  // huidige pagina; het build-script zet deze per pagina via PAYIT_RENDER()
+  let page = DOM ? document.body.dataset.page : "home";
+  let artikelId = DOM ? document.body.dataset.artikel || new URLSearchParams(location.search).get("id") : null;
 
   /* ---------- helpers ---------- */
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -13,10 +18,12 @@
   const fmtLong = (iso) => fmt(iso, { weekday: "long", day: "numeric", month: "long" });
   const fmtBlog = (iso) => fmt(iso, { day: "numeric", month: "long", year: "numeric" });
   const initials = (n) => n.split(/[\s-]+/).filter(Boolean).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
-  const avatar = (n, cls = "") => { const f = fotoVan(n); return f ? `<img class="avatar ${cls}" src="${esc(f)}" alt="" loading="lazy">` : `<span class="initials ${cls}">${initials(n)}</span>`; };
+  const avatar = (n, cls = "") => { const f = fotoVan(n); return f ? `<img class="avatar ${cls}" src="${esc(f)}" alt="" width="96" height="96" loading="lazy">` : `<span class="initials ${cls}">${initials(n)}</span>`; };
   const slug = (n) => n.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-");
   const $ = (sel) => document.querySelector(sel);
-  const qs = (k) => new URLSearchParams(location.search).get(k);
+  const postUrl = (p) => `blog-${encodeURIComponent(p.id)}.html`;
+  // clubwapen in drie formaten (images/crest-*.webp), zodat elke plek de kleinste versie laadt
+  const crest = (px, attrs = "") => `<img src="images/crest-${px}.webp" ${attrs}>`;
   const norm = (t) => String(t).toLowerCase().replace(/[^a-z0-9]/g, "");
   const isUs = (t) => norm(t) === norm(CLUB);
   const fotoVan = (n) => D.spelers.find((p) => p.naam === n)?.foto;
@@ -72,15 +79,14 @@
     ["sponsors", "sponsors.html", "Sponsors"],
     ["over-ons", "over-ons.html", "Over ons"]
   ];
-  const active = page === "artikel" ? "blog" : page;
-
   function header() {
+    const active = page === "artikel" ? "blog" : page;
     return `
     <a class="skip" href="#main">Naar inhoud</a>
     <header class="site-header" id="top">
       <div class="wrap header-inner">
         <a class="brand" href="index.html" aria-label="${CLUB} home">
-          <img src="images/payit-crest-clean.png" alt="" width="44" height="44">
+          ${crest(160, 'alt="" width="44" height="44"')}
           <span><strong>${CLUB}</strong><small>${D.club.afkorting || D.club.gemeente.slice(0, 3).toUpperCase()} · ${D.club.opgericht}</small></span>
         </a>
         <nav class="main-nav" id="main-nav" aria-label="Hoofdmenu">
@@ -102,7 +108,7 @@
     <footer class="site-footer">
       <div class="wrap footer-grid">
         <div class="footer-brand">
-          <img src="images/payit-crest-clean.png" alt="${CLUB} wapen" width="72" height="72" loading="lazy">
+          ${crest(160, `alt="${CLUB} wapen" width="72" height="72" loading="lazy"`)}
           <p class="display">${D.club.slogan.join("<br>")}</p>
         </div>
         <div>
@@ -138,7 +144,7 @@
         <h1 class="display">${title}</h1>
         ${sub ? `<p class="lead">${sub}</p>` : ""}
       </div>
-      <img class="page-hero-crest" src="images/payit-crest-clean.png" alt="" aria-hidden="true">
+      ${crest(480, 'class="page-hero-crest" alt="" aria-hidden="true" width="480" height="480"')}
     </section>`;
 
   const teamName = (t) => `<span class="${isUs(t) ? "us" : ""}">${esc(t)}</span>`;
@@ -191,7 +197,7 @@
           </div>` : ""}
         <div class="result-foot">
           ${m.motm ? `<span class="motm">${avatar(m.motm, "sm")}<span><small>${I.potm} Payit Player of the Match</small>${esc(m.motm)}</span></span>` : "<span></span>"}
-          ${post ? `<a class="link-arrow" href="artikel.html?id=${encodeURIComponent(post.id)}">Verslag ${I.arrow}</a>` : ""}
+          ${post ? `<a class="link-arrow" href="${postUrl(post)}">Verslag ${I.arrow}</a>` : ""}
         </div>
       </article>`;
   }
@@ -236,7 +242,7 @@
     return `
       <article class="player ${isTop ? "is-top" : ""}" id="${slug(p.naam)}">
         <div class="player-photo${p.foto ? "" : " no-photo"}">
-          ${p.foto ? `<img src="${esc(p.foto)}" alt="${esc(p.naam)}" loading="lazy">` : `<span class="initials">${initials(p.naam)}</span>`}
+          ${p.foto ? `<img src="${esc(p.foto)}" alt="${esc(p.naam)}, speler van ${CLUB}" width="600" height="600" loading="lazy">` : `<span class="initials">${initials(p.naam)}</span>`}
           ${p.nummer ? `<span class="number">${esc(p.nummer)}</span>` : ""}
           ${isTop ? `<span class="top-tag">${I.ball} Topschutter</span>` : ""}
         </div>
@@ -256,11 +262,11 @@
     const m = matchFor(p);
     return `
       <article class="card post-card ${big ? "big" : ""}">
-        <a href="artikel.html?id=${encodeURIComponent(p.id)}" class="post-link">
+        <a href="${postUrl(p)}" class="post-link">
           <div class="post-media">
             ${p.afbeelding ? `<img src="${esc(p.afbeelding)}" alt="" loading="lazy">`
               : m ? `<div class="post-score"><span>${esc(m.thuis)}</span><b>${m.score[0]}–${m.score[1]}</b><span>${esc(m.uit)}</span></div>`
-              : `<div class="post-score"><img src="images/payit-crest-clean.png" alt=""></div>`}
+              : `<div class="post-score">${crest(160, 'alt="" width="160" height="160" loading="lazy"')}</div>`}
           </div>
           <div class="post-body">
             <p class="kicker">${esc(p.categorie || "Nieuws")} · ${fmtBlog(p.datum)}</p>
@@ -342,7 +348,7 @@
             <p class="muted">Matchdays, uitslagen, Payit Player of the Match en alles wat eigenlijk niet op een officiële clubwebsite thuishoort.</p>
             <a class="btn btn-primary" href="${D.club.instagram}" target="_blank" rel="noopener">${I.ig} ${D.club.instagramHandle}</a>
           </div>
-          <img src="images/payit-crest-clean.png" alt="" loading="lazy">
+          ${crest(480, 'alt="" width="480" height="480" loading="lazy"')}
         </div>
       </div>
     </section>`;
@@ -369,7 +375,7 @@
               <a class="btn btn-ghost" href="ploeg.html">Ontdek de ploeg</a>
             </div>
           </div>
-          <div class="hero-crest"><img src="images/payit-crest-clean.png" alt="${CLUB} wapen" width="520" height="520" fetchpriority="high"></div>
+          <div class="hero-crest"><img src="images/crest-480.webp" srcset="images/crest-480.webp 480w, images/crest-960.webp 960w" sizes="(max-width: 900px) 260px, 460px" alt="${CLUB} wapen" width="480" height="480" fetchpriority="high"></div>
         </div>
       </section>
 
@@ -524,9 +530,8 @@
     },
 
     artikel() {
-      const p = D.blog.find((x) => x.id === qs("id"));
+      const p = D.blog.find((x) => x.id === artikelId);
       if (!p) return `${pageHero("Blog", "Niet gevonden", "Dit bericht bestaat niet (meer).")}<section class="section"><div class="wrap"><a class="btn btn-primary" href="blog.html">Naar de blog</a></div></section>`;
-      document.title = `${p.titel} · ${CLUB}`;
       const m = matchFor(p);
       const others = posts.filter((x) => x.id !== p.id).slice(0, 3);
       return `
@@ -537,8 +542,8 @@
           <h1 class="display">${esc(p.titel)}</h1>
           ${p.intro ? `<p class="lead">${esc(p.intro)}</p>` : ""}
         </header>
-        ${m ? `<div class="wrap narrow">${resultCard(m, { full: true }).replace(/<a class="link-arrow" href="artikel[^"]*">[\s\S]*?<\/a>/, "")}</div>` : ""}
-        ${p.afbeelding ? `<figure class="wrap narrow article-img"><img src="${esc(p.afbeelding)}" alt=""></figure>` : ""}
+        ${m ? `<div class="wrap narrow">${resultCard(m, { full: true }).replace(/<a class="link-arrow" href="blog-[^"]*">[\s\S]*?<\/a>/, "")}</div>` : ""}
+        ${p.afbeelding ? `<figure class="wrap narrow article-img"><img src="${esc(p.afbeelding)}" alt="${esc(p.titel)}"></figure>` : ""}
         <div class="wrap narrow prose">${p.inhoud}</div>
       </article>
       ${others.length ? `<section class="section alt"><div class="wrap">${sectionHead("Lees ook", "Meer verslagen")}<div class="grid-3">${others.map((x) => postCard(x)).join("")}</div></div></section>` : ""}`;
@@ -589,11 +594,53 @@
     }
   };
 
+  /* ---------- titel & beschrijving per pagina (voor Google en bij het delen) ---------- */
+  const plaats = `minivoetbal ${D.club.gemeente}`;
+  function seo() {
+    const p = page === "artikel" ? D.blog.find((x) => x.id === artikelId) : null;
+    if (p) return { titel: `${p.titel} · ${CLUB}`, beschrijving: p.intro || `${p.categorie || "Nieuws"} van ${CLUB}.` };
+    return {
+      home: { titel: `${CLUB} · Minivoetbal ${D.club.gemeente}`, beschrijving: `${CLUB} is een recreatieve minivoetbalploeg uit ${D.club.gemeente}, opgericht in ${D.club.opgericht}. Bekijk de uitslagen, het klassement, de topschutters en de matchverslagen van seizoen ${D.club.seizoen}.` },
+      wedstrijden: { titel: `Wedstrijden, uitslagen en klassement · ${CLUB}`, beschrijving: `Kalender, uitslagen met doelpuntenmakers en het volledige klassement van ${CLUB}, ${plaats}, seizoen ${D.club.seizoen}.` },
+      ploeg: { titel: `Ploeg en topschutters · ${CLUB} ${plaats}`, beschrijving: `De ${D.spelers.length} spelers van ${CLUB}, de stand bij de topschutters en wie al Payit Player of the Match werd in seizoen ${D.club.seizoen}.` },
+      blog: { titel: `Blog en matchverslagen · ${CLUB}`, beschrijving: `Alle matchverslagen van ${CLUB}, ${plaats}: wat er gebeurde, wie scoorde en wie Payit Player of the Match werd.` },
+      sponsors: { titel: `Sponsors en partners · ${CLUB}`, beschrijving: `De partners die ${CLUB} mee mogelijk maken: ${D.sponsors.map((s) => s.naam).join(", ")}. Ook partner worden van onze minivoetbalploeg?` },
+      "over-ons": { titel: `Over ons · ${CLUB}, ${plaats}`, beschrijving: `${CLUB} werd in ${D.club.opgericht} opgericht in ${D.club.gemeente}: een groep vrienden die minivoetbal speelt. Competitief tijdens de match, ontspannen erna.` },
+      artikel: { titel: `Bericht niet gevonden · ${CLUB}`, beschrijving: `Dit bericht van ${CLUB} bestaat niet (meer).` }
+    }[page] || { titel: CLUB, beschrijving: "" };
+  }
+
+  /* Vingerafdruk van alles wat de HTML bepaalt. Staat de vooraf gegenereerde HTML
+     nog gelijk met de data, dan hoeft de browser de pagina niet opnieuw op te bouwen. */
+  function stempel() {
+    const next = upcoming.find((m) => toDate(m) > new Date()) || upcoming[0];
+    const tekst = JSON.stringify([D, K || null, next ? next.datum + next.uur : "", new Date().getFullYear()]);
+    let h = 5381;
+    for (let i = 0; i < tekst.length; i++) h = ((h * 33) ^ tekst.charCodeAt(i)) >>> 0;
+    return h.toString(36);
+  }
+
+  /* voor scripts/build.mjs */
+  window.PAYIT_RENDER = function (pagina, id) {
+    page = pagina; artikelId = id || null;
+    return { header: header(), main: (pages[page] || pages.home)(), footer: footer(), seo: seo(), stempel: stempel() };
+  };
+  if (!DOM) return;
+
   /* ---------- opbouwen ---------- */
-  document.body.insertAdjacentHTML("afterbegin", header());
   const main = $("#main");
-  main.innerHTML = (pages[page] || pages.home)();
-  main.insertAdjacentHTML("afterend", footer());
+  // oud adres van een verslag (artikel.html?id=…) → door naar de vaste pagina
+  if (page === "artikel" && !document.body.dataset.artikel && location.protocol !== "file:" && D.blog.some((x) => x.id === artikelId)) {
+    location.replace(postUrl({ id: artikelId }));
+    return;
+  }
+  if (main.dataset.stempel !== stempel()) {
+    document.querySelectorAll("body > .skip, body > .site-header, body > .sponsor-strip, body > .site-footer").forEach((el) => el.remove());
+    document.body.insertAdjacentHTML("afterbegin", header());
+    main.innerHTML = (pages[page] || pages.home)();
+    main.insertAdjacentHTML("afterend", footer());
+    document.title = seo().titel;
+  }
 
   /* klikken tellen in GoatCounter: sponsors, Instagram en MVBI */
   document.querySelectorAll('a[target="_blank"]').forEach((a) => {

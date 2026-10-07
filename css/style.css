@@ -526,3 +526,9 @@ a:hover .link-arrow svg, .link-arrow:hover svg { transform: translateX(3px); }
 @media (prefers-reduced-motion: no-preference) {
   .js :is(.section-head, .card, .player, .fixture, .stat-band > div, .podium-step, .chip):not(.reveal) { opacity: 0; }
 }
+
+/* uitgestelde wedstrijd (nieuwe datum nog niet bekend) */
+.fixture.is-uitgesteld { border-style: dashed; background: transparent; }
+.fixture.is-uitgesteld .fx-date, .fixture.is-uitgesteld .fx-teams { opacity: .55; }
+.fixture.is-uitgesteld .fx-date b, .fixture.is-uitgesteld .fx-date small { text-decoration: line-through; }
+.tag-uitgesteld { border-color: var(--draw); color: var(--draw); }

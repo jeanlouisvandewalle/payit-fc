@@ -31,7 +31,8 @@
   /* ---------- afgeleide data ---------- */
   const matches = D.wedstrijden.slice().sort((a, b) => toDate(a) - toDate(b));
   const played = matches.filter((m) => Array.isArray(m.score));
-  const upcoming = matches.filter((m) => !Array.isArray(m.score));
+  const upcoming = matches.filter((m) => !Array.isArray(m.score) && !m.uitgesteld);
+  const uitgesteld = matches.filter((m) => !Array.isArray(m.score) && m.uitgesteld);   // verzet, nieuwe datum nog niet bekend
   const playedDesc = played.slice().reverse();
 
   const ourGoals = (m) => (isUs(m.thuis) ? m.score[0] : m.score[1]);
@@ -205,11 +206,12 @@
   function fixtureRow(m) {
     const d = new Date(m.datum + "T12:00:00");
     return `
-      <li class="fixture">
+      <li class="fixture${m.uitgesteld ? " is-uitgesteld" : ""}">
         <div class="fx-date"><b>${d.getDate()}</b><small>${d.toLocaleDateString("nl-BE", { month: "short" }).replace(".", "")}</small></div>
         <div class="fx-teams">${teamName(m.thuis)} <em>vs</em> ${teamName(m.uit)}</div>
-        <div class="fx-meta"><span>${I.clock}${esc(m.uur)}</span><span>${I.pin}${esc(m.locatie)}</span></div>
-        <span class="tag">${isUs(m.thuis) ? "Thuis" : "Uit"}</span>
+        ${m.uitgesteld
+          ? `<div class="fx-meta"><span>${I.clock}Nieuwe datum volgt</span></div><span class="tag tag-uitgesteld">Uitgesteld</span>`
+          : `<div class="fx-meta"><span>${I.clock}${esc(m.uur)}</span><span>${I.pin}${esc(m.locatie)}</span></div><span class="tag">${isUs(m.thuis) ? "Thuis" : "Uit"}</span>`}
       </li>`;
   }
 
@@ -460,7 +462,7 @@
       <section class="section">
         <div class="wrap">
           ${sectionHead("01 · Kalender", "Komende wedstrijden", `<a class="link-arrow" href="${D.club.mvbi}" target="_blank" rel="noopener">Officiële kalender ${I.ext}</a>`)}
-          ${upcoming.length ? `<ul class="fixtures">${upcoming.map(fixtureRow).join("")}</ul>` : `<p class="muted">Geen komende wedstrijden gepland.</p>`}
+          ${upcoming.length || uitgesteld.length ? `<ul class="fixtures">${[...upcoming, ...uitgesteld].map(fixtureRow).join("")}</ul>` : `<p class="muted">Geen komende wedstrijden gepland.</p>`}
         </div>
       </section>
       <section class="section alt" id="stand">

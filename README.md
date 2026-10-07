@@ -32,6 +32,9 @@ Clubwebsite van PAYIT FC, minivoetbal uit Izegem. Gewone HTML/CSS/JavaScript, gr
 Het klassement moet je **niet** meer overtypen: dat komt automatisch van MVBI (zie verder).
 Statistieken, topschutters, Player of the Match-telling, vorm (W/G/V) en de "volgende match" worden automatisch berekend.
 
+### Match uitgesteld
+Zet `uitgesteld: true` bij de wedstrijd in `wedstrijden`. Ze verdwijnt dan uit "volgende match" en staat onderaan de kalender met het label **Uitgesteld – nieuwe datum volgt**. Is de nieuwe datum bekend: pas `datum` en `uur` aan en haal `uitgesteld: true` weer weg.
+
 ### Een verslag schrijven
 Voeg bovenaan in `blog` een nieuw item toe:
 ```js

@@ -87,7 +87,8 @@ window.PAYIT = {
     },
 
     // ---- Komende wedstrijden ----
-    { datum: "2026-10-08", uur: "18:00", locatie: "Izegem",  thuis: "PAYIT FC", uit: "FC de Ondank", link: "https://www.mvbi.be/payit-fc-fc-de-ondank" },
+    // uitgesteld: true = match is verzet en de nieuwe datum is nog niet bekend. Is die er wel: datum/uur aanpassen en "uitgesteld" weghalen.
+    { datum: "2026-10-08", uur: "18:00", locatie: "Izegem",  thuis: "PAYIT FC", uit: "FC de Ondank", link: "https://www.mvbi.be/payit-fc-fc-de-ondank", uitgesteld: true },
     { datum: "2026-10-14", uur: "21:00", locatie: "Kachtem", thuis: "Checked by Vanhulle", uit: "PAYIT FC" },
     { datum: "2026-10-22", uur: "19:00", locatie: "Zie MVBI", thuis: "PAYIT FC", uit: "T'Schroefke" },
     { datum: "2026-10-26", uur: "19:30", locatie: "Izegem",  thuis: "Panna FC", uit: "PAYIT FC" },

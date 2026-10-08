@@ -12,7 +12,7 @@ window.PAYIT_KLASSEMENT = {
         ["Orthopedie Van Parys", 5, 3, 0, 2, 42, 15, 9],
         ["PayitFC", 3, 3, 0, 0, 39, 5, 9],
         ["MVC Deportivo VDM", 3, 3, 0, 0, 28, 6, 9],
-        ["Plectrum - Maison Noire", 3, 3, 0, 0, 23, 9, 9],
+        ["Plectrum - Maison Noire", 4, 3, 0, 1, 27, 15, 9],
         ["MVC De Lagaar - Gworks", 4, 2, 0, 2, 16, 17, 6],
         ["L'Abattoir", 2, 0, 0, 2, 6, 17, 0],
         ["BTW Boys", 0, 0, 0, 0, 0, 0, 0],

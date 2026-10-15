@@ -157,12 +157,15 @@ window.PAYIT = {
       auteur: "De redactie",
       categorie: "Matchverslag",
       wedstrijd: 5,
-      intro: "We waren de betere ploeg en creëerden kans na kans, maar het net bleef te vaak dicht. Checked by Vanhulle won met 8–4: onze eerste nederlaag van het seizoen.",
+      intro: "We waren de betere ploeg en het stond lang gelijk, maar in het laatste kwart slikten we nog vier goals. Checked by Vanhulle won met 8–4: onze eerste nederlaag van het seizoen.",
       inhoud: `
         <p>Ooit moest het gebeuren. Na drie overwinningen op rij ging PAYIT FC op woensdagavond in Kachtem voor het eerst onderuit: Checked by Vanhulle won met 8–4. Wie alleen de uitslag ziet, denkt aan een avond om snel te vergeten. Wie erbij was, weet dat het verhaal anders is.</p>
 
         <h3>De betere ploeg</h3>
         <p>We hadden het meeste balbezit, combineerden vlot en kwamen telkens opnieuw tot kansen. Alleen wilde de bal er niet in. Schoten naast, schoten net over, schoten recht op de keeper: we probeerden zowat elke manier om niet te scoren, en dat lukte opvallend goed. Aan de overkant was Checked by Vanhulle een pak efficiënter. Dat is ook een kwaliteit, en die mogen we hen gunnen.</p>
+
+        <h3>Het laatste kwart</h3>
+        <p>Lang bleef het spannend: tot het laatste kwart stond het gelijk, 4–4. Op dat moment leek alles nog mogelijk, en gezien het spelbeeld zelfs eerder in ons voordeel. Maar waar wij de kansen bleven missen, sloeg Checked by Vanhulle wel toe. In dat laatste kwart gingen er nog vier ballen in ons doel, en zo werd een evenwichtige match toch nog een duidelijke 8–4. Een slot om snel te vergeten, en om uit te leren.</p>
 
         <h3>Louis en Achiel houden de eer hoog</h3>
         <p>De vier doelpunten kwamen op rekening van twee spelers. <strong>Louis Azou</strong> scoorde er twee en zit daarmee al aan zeven voor het seizoen. <strong>Achiel Denijs</strong> deed hetzelfde: twee goals, en daarmee al drie in totaal. Een mooie avond voor hen, een eerlijke vermelding verdienen ze zeker.</p>

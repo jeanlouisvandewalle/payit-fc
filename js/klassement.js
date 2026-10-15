@@ -1,18 +1,18 @@
 /* Automatisch gegenereerd door scripts/update-klassement.mjs — niet met de hand aanpassen. */
 window.PAYIT_KLASSEMENT = {
   "bron": "https://www.mvbi.be/klassement",
-  "bijgewerkt": "2026-10-13",
+  "bijgewerkt": "2026-10-15",
   "reeksen": [
     {
       "naam": "Competitie",
       "rijen": [
         ["FC Ariba", 5, 5, 0, 0, 70, 8, 14],
+        ["Orthopedie Van Parys", 6, 4, 0, 2, 53, 16, 12],
+        ["Plectrum - Maison Noire", 5, 4, 0, 1, 33, 19, 12],
         ["Panna FC", 6, 4, 0, 2, 30, 24, 12],
         ["T'Bloemgat", 4, 4, 0, 0, 28, 8, 12],
-        ["Orthopedie Van Parys", 5, 3, 0, 2, 42, 15, 9],
-        ["PayitFC", 3, 3, 0, 0, 39, 5, 9],
+        ["PayitFC", 4, 3, 0, 1, 43, 13, 9],
         ["MVC Deportivo VDM", 3, 3, 0, 0, 28, 6, 9],
-        ["Plectrum - Maison Noire", 4, 3, 0, 1, 27, 15, 9],
         ["MVC De Lagaar - Gworks", 4, 2, 0, 2, 16, 17, 6],
         ["L'Abattoir", 3, 1, 0, 2, 16, 20, 3],
         ["BTW Boys", 0, 0, 0, 0, 0, 0, 0],

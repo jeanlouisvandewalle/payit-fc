@@ -88,8 +88,15 @@ window.PAYIT = {
 
     // ---- Komende wedstrijden ----
     // uitgesteld: true = match is verzet en de nieuwe datum is nog niet bekend. Is die er wel: datum/uur aanpassen en "uitgesteld" weghalen.
-    { datum: "2026-10-08", uur: "18:00", locatie: "Izegem",  thuis: "PAYIT FC", uit: "FC de Ondank", link: "https://www.mvbi.be/payit-fc-fc-de-ondank", uitgesteld: true },
-    { datum: "2026-10-14", uur: "21:00", locatie: "Kachtem", thuis: "Checked by Vanhulle", uit: "PAYIT FC" },
+    { speeldag: 4, datum: "2026-10-08", uur: "18:00", locatie: "Izegem",  thuis: "PAYIT FC", uit: "FC de Ondank", link: "https://www.mvbi.be/payit-fc-fc-de-ondank", uitgesteld: true },
+    {
+      speeldag: 5, datum: "2026-10-14", uur: "21:00", locatie: "Kachtem",
+      thuis: "Checked by Vanhulle", uit: "PAYIT FC", score: [8, 4],
+      doelpunten: { "Louis Azou": 2, "Achiel Denijs": 2 },
+      quote: "Meer van de bal, meer kansen, minder goals. Voetbal kan wreed zijn.",
+      link: "https://www.mvbi.be/checked-vanhulle-payit-fc",
+      verslag: "speeldag-5-checked-by-vanhulle"
+    },
     { datum: "2026-10-22", uur: "19:00", locatie: "Zie MVBI", thuis: "PAYIT FC", uit: "T'Schroefke" },
     { datum: "2026-10-26", uur: "19:30", locatie: "Izegem",  thuis: "Panna FC", uit: "PAYIT FC" },
     { datum: "2026-11-09", uur: "19:30", locatie: "Izegem",  thuis: "PAYIT FC", uit: "L'Abattoir" },
@@ -143,6 +150,30 @@ window.PAYIT = {
      de site sorteert zelf op datum.
      "inhoud" is gewone HTML: gebruik <p>…</p> voor alinea's. */
   blog: [
+    {
+      id: "speeldag-5-checked-by-vanhulle",
+      titel: "Veel kansen, weinig geluk: eerste nederlaag in Kachtem",
+      datum: "2026-10-15",
+      auteur: "De redactie",
+      categorie: "Matchverslag",
+      wedstrijd: 5,
+      intro: "We waren de betere ploeg en creëerden kans na kans, maar het net bleef te vaak dicht. Checked by Vanhulle won met 8–4: onze eerste nederlaag van het seizoen.",
+      inhoud: `
+        <p>Ooit moest het gebeuren. Na drie overwinningen op rij ging PAYIT FC op woensdagavond in Kachtem voor het eerst onderuit: Checked by Vanhulle won met 8–4. Wie alleen de uitslag ziet, denkt aan een avond om snel te vergeten. Wie erbij was, weet dat het verhaal anders is.</p>
+
+        <h3>De betere ploeg</h3>
+        <p>We hadden het meeste balbezit, combineerden vlot en kwamen telkens opnieuw tot kansen. Alleen wilde de bal er niet in. Schoten naast, schoten net over, schoten recht op de keeper: we probeerden zowat elke manier om niet te scoren, en dat lukte opvallend goed. Aan de overkant was Checked by Vanhulle een pak efficiënter. Dat is ook een kwaliteit, en die mogen we hen gunnen.</p>
+
+        <h3>Louis en Achiel houden de eer hoog</h3>
+        <p>De vier doelpunten kwamen op rekening van twee spelers. <strong>Louis Azou</strong> scoorde er twee en zit daarmee al aan zeven voor het seizoen. <strong>Achiel Denijs</strong> deed hetzelfde: twee goals, en daarmee al drie in totaal. Een mooie avond voor hen, een eerlijke vermelding verdienen ze zeker.</p>
+
+        <h3>De schepcorners van Jelle</h3>
+        <p>Speciale vermelding voor <strong>Jelle Descheemaecker</strong>, die twee keer een schepcorner probeerde. Twee keer bleef het bij de poging. Het idee was er, de uitvoering komt de volgende keer. Op training wordt er alvast extra geschept.</p>
+
+        <h3>En nu?</h3>
+        <p>Na vier matchen staat de teller op drie overwinningen en één nederlaag, met 43 goals voor en 13 tegen. Een nederlaag doet altijd pijn, maar wie zo veel kansen creëert, mag met vertrouwen naar de volgende match kijken. Die is tegen T'Schroefke op donderdag 22 oktober om 19 uur. Dan graag iets meer vizier.</p>
+      `
+    },
     {
       id: "speeldag-3-kasjotters",
       titel: "Zestien keer raak, nul keer gevist",

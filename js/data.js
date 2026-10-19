@@ -182,7 +182,7 @@ window.PAYIT = {
         <p>In doel haalde <strong>Milan Deryckere</strong> zijn innerlijke Courtois boven. Redding na redding hield hij de ploeg recht, met als hoogtepunt een save in de laatste minuut waarbij hij zich letterlijk vol voor de bal gooide. Wat het hem precies gekost heeft, laten we in het midden; dat hij na afloop iets voorzichtiger zat, zegt genoeg. Een redding met lichaam en ziel, maar vooral met lichaam. Zonder die save was het geen 6–5 geweest.</p>
 
         <h3>Payit Player of the Match</h3>
-        <p>De trofee gaat naar <strong>Arthur De Fauw</strong>. Vier goals met vijf man: daar is weinig discussie over mogelijk. Eervolle vermeldingen voor <strong>Jean-Louis</strong>, <strong>Rafael</strong> en <strong>Milan</strong>, die zich alle drie volledig gaven tot het laatste fluitsignaal. En eigenlijk ook voor iedereen die op een maandagavond binnen het kwartier in een sportzaal stond.</p>
+        <p>De trofee gaat naar <strong>Arthur De Fauw</strong>. Vier goals met vijf man: daar is weinig discussie over mogelijk. Eervolle vermeldingen voor <strong>Ilias</strong>, <strong>Jean-Louis</strong>, <strong>Rafael</strong> en <strong>Milan</strong>, die zich alle vier volledig gaven tot het laatste fluitsignaal. En eigenlijk ook voor iedereen die op een maandagavond binnen het kwartier in een sportzaal stond.</p>
 
         <h3>En nu?</h3>
         <p>Na vijf matchen staat de teller op vier overwinningen en één nederlaag, met 49 goals voor en 18 tegen. De nederlaag tegen Checked by Vanhulle is verteerd. Volgende opdracht: Panna FC, maandag 26 oktober om 19u30 in Izegem. Dat is tenminste een datum die we op voorhand kennen.</p>

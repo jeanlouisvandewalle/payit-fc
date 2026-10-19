@@ -97,7 +97,15 @@ window.PAYIT = {
       link: "https://www.mvbi.be/checked-vanhulle-payit-fc",
       verslag: "speeldag-5-checked-by-vanhulle"
     },
-    { datum: "2026-10-22", uur: "19:00", locatie: "Zie MVBI", thuis: "PAYIT FC", uit: "T'Schroefke" },
+    {
+      speeldag: 6, datum: "2026-10-19", uur: "20:00", locatie: "Kachtem",
+      thuis: "PAYIT FC", uit: "T'Schroefke", score: [6, 5],
+      doelpunten: { "Arthur De Fauw": 4, "Ilias Godefroo": 2 },
+      motm: "Arthur De Fauw",
+      quote: "Last minute opgeroepen, met vijf man naar Kachtem, en toch gewonnen. Dit is PAYIT FC.",
+      link: "https://www.mvbi.be/payit-fc-tschroefke",
+      verslag: "speeldag-6-tschroefke"
+    },
     { datum: "2026-10-26", uur: "19:30", locatie: "Izegem",  thuis: "Panna FC", uit: "PAYIT FC" },
     { datum: "2026-11-09", uur: "19:30", locatie: "Izegem",  thuis: "PAYIT FC", uit: "L'Abattoir" },
     { datum: "2026-11-18", uur: "19:00", locatie: "Kachtem", thuis: "Lagaar Gworks", uit: "PAYIT FC" },
@@ -150,6 +158,36 @@ window.PAYIT = {
      de site sorteert zelf op datum.
      "inhoud" is gewone HTML: gebruik <p>…</p> voor alinea's. */
   blog: [
+    {
+      id: "speeldag-6-tschroefke",
+      titel: "Vijf man, één missie",
+      datum: "2026-10-19",
+      auteur: "De redactie",
+      categorie: "Matchverslag",
+      wedstrijd: 6,
+      intro: "Geen match op donderdag, wel een telefoontje op maandag: \"Jullie spelen nú.\" Met vijf trouwe soldaten en geen enkele wissel wonnen we met 6–5 van T'Schroefke.",
+      inhoud: `
+        <p>Sommige overwinningen plan je. Andere vallen je op een maandagavond onverwacht in de schoot. De 6–5 tegen T'Schroefke hoort duidelijk bij de tweede soort.</p>
+
+        <h3>Een telefoontje op het verkeerde moment</h3>
+        <p>Eigenlijk stond de match tegen T'Schroefke gepland voor donderdag. Eigenlijk. Zonder dat iemand het wist, werd ze verzet naar maandagavond, en dat ontdekten we pas toen de telefoon rinkelde op het moment van de aftrap. "Zijn jullie onderweg?" Niet bepaald. Wat volgde was een sprint naar de zaal in Kachtem die op zich al een Player of the Match-trofee verdiende.</p>
+
+        <h3>Vijf trouwe soldaten</h3>
+        <p>Vijf spelers lieten alles vallen en vertrokken meteen: Arthur, Ilias, Jean-Louis, Rafael en Milan. Vijf man op het veld en nul op de bank. Wisselen was geen optie, opgeven nog minder. Wie moe was, mocht dat even voelen en liep daarna gewoon verder. Het werd een spannende match tot het einde, maar de drie punten bleven bij ons: 6–5.</p>
+
+        <h3>Arthur doet wat Arthur doet</h3>
+        <p><strong>Arthur De Fauw</strong> besliste dat de avond van hem was: vier doelpunten. Daarmee staat hij op 13 goals en loopt hij verder uit in de topschutterslijst. <strong>Ilias Godefroo</strong> scoorde er twee en strooide daarnaast met assists alsof het snoep was. Met vijf spelers moet elke pass raak zijn, en die van Ilias waren dat ook.</p>
+
+        <h3>Milan, onze eigen Courtois</h3>
+        <p>In doel haalde <strong>Milan Deryckere</strong> zijn innerlijke Courtois boven. Redding na redding hield hij de ploeg recht, met als hoogtepunt een save in de laatste minuut waarbij hij zich letterlijk vol voor de bal gooide. Wat het hem precies gekost heeft, laten we in het midden; dat hij na afloop iets voorzichtiger zat, zegt genoeg. Een redding met lichaam en ziel, maar vooral met lichaam. Zonder die save was het geen 6–5 geweest.</p>
+
+        <h3>Payit Player of the Match</h3>
+        <p>De trofee gaat naar <strong>Arthur De Fauw</strong>. Vier goals met vijf man: daar is weinig discussie over mogelijk. Eervolle vermeldingen voor <strong>Jean-Louis</strong>, <strong>Rafael</strong> en <strong>Milan</strong>, die zich alle drie volledig gaven tot het laatste fluitsignaal. En eigenlijk ook voor iedereen die op een maandagavond binnen het kwartier in een sportzaal stond.</p>
+
+        <h3>En nu?</h3>
+        <p>Na vijf matchen staat de teller op vier overwinningen en één nederlaag, met 49 goals voor en 18 tegen. De nederlaag tegen Checked by Vanhulle is verteerd. Volgende opdracht: Panna FC, maandag 26 oktober om 19u30 in Izegem. Dat is tenminste een datum die we op voorhand kennen.</p>
+      `
+    },
     {
       id: "speeldag-5-checked-by-vanhulle",
       titel: "Veel kansen, weinig geluk: eerste nederlaag in Kachtem",

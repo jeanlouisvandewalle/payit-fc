@@ -51,7 +51,7 @@ window.PAYIT = {
      "verslag" verwijst naar de id van een blogpost hieronder. */
   wedstrijden: [
     {
-      speeldag: 1, datum: "2026-09-14", uur: "20:55", locatie: "Izegem",
+      speeldag: 1, datum: "2026-09-14", uur: "20:55", locatie: "Kachtem",
       thuis: "Q-Team", uit: "PAYIT FC", score: [1, 16],
       doelpunten: {
         "Arthur De Fauw": 5, "Jelle Descheemaecker": 4, "Jonas Boucquet": 2,
@@ -60,10 +60,10 @@ window.PAYIT = {
       },
       motm: "Arthur De Fauw",
       quote: "De competitie openen met zestien goals. Bescheiden blijven doen we morgen wel.",
-      verslag: "speeldag-1-q-team"
+      verslag: "speeldag-1-q-team", link: "https://www.mvbi.be/q-team-payit-fc"
     },
     {
-      speeldag: 2, datum: "2026-09-21", uur: "20:55", locatie: "Izegem",
+      speeldag: 2, datum: "2026-09-21", uur: "20:55", locatie: "Kachtem",
       thuis: "PAYIT FC", uit: "Driemo", score: [7, 4],
       doelpunten: {
         "Louis Azou": 3, "Jelle Descheemaecker": 2,
@@ -71,7 +71,7 @@ window.PAYIT = {
       },
       motm: "Louis Azou",
       quote: "Speeldag 2: opnieuw gewonnen. Tactisch niet perfect. Resultaat wel.",
-      verslag: "speeldag-2-driemo"
+      verslag: "speeldag-2-driemo", link: "https://www.mvbi.be/payit-fc-driemo"
     },
     {
       speeldag: 3, datum: "2026-09-28", uur: "20:30", locatie: "Izegem",
@@ -83,12 +83,12 @@ window.PAYIT = {
       },
       motm: "Rafael Verhamme",
       quote: "Zestien gemaakt, niets weggegeven. Meer analyse zou alleen maar risico's opleveren.",
-      verslag: "speeldag-3-kasjotters"
+      verslag: "speeldag-3-kasjotters", link: "https://www.mvbi.be/kasjotters-payitfc"
     },
 
     // ---- Komende wedstrijden ----
     // uitgesteld: true = match is verzet en de nieuwe datum is nog niet bekend. Is die er wel: datum/uur aanpassen en "uitgesteld" weghalen.
-    { speeldag: 4, datum: "2026-10-08", uur: "18:00", locatie: "Izegem",  thuis: "PAYIT FC", uit: "FC de Ondank", link: "https://www.mvbi.be/payit-fc-fc-de-ondank", uitgesteld: true },
+    { speeldag: 4, datum: "2026-12-21", uur: "20:55", locatie: "Kachtem",  thuis: "PAYIT FC", uit: "FC de Ondank", link: "https://www.mvbi.be/payit-fc-fc-de-ondank" },
     {
       speeldag: 5, datum: "2026-10-14", uur: "21:00", locatie: "Kachtem",
       thuis: "Checked by Vanhulle", uit: "PAYIT FC", score: [8, 4],
@@ -106,12 +106,14 @@ window.PAYIT = {
       link: "https://www.mvbi.be/payit-fc-tschroefke",
       verslag: "speeldag-6-tschroefke"
     },
-    { datum: "2026-10-26", uur: "19:30", locatie: "Izegem",  thuis: "Panna FC", uit: "PAYIT FC" },
-    { datum: "2026-11-09", uur: "19:30", locatie: "Izegem",  thuis: "PAYIT FC", uit: "L'Abattoir" },
-    { datum: "2026-11-18", uur: "19:00", locatie: "Kachtem", thuis: "Lagaar Gworks", uit: "PAYIT FC" },
-    { datum: "2026-11-25", uur: "19:00", locatie: "Kachtem", thuis: "Bloemgat", uit: "PAYIT FC" },
-    { datum: "2026-12-07", uur: "19:30", locatie: "Izegem",  thuis: "Playa", uit: "PAYIT FC" },
-    { datum: "2026-12-14", uur: "20:30", locatie: "Izegem",  thuis: "PAYIT FC", uit: "Sanifro ofzo" }
+    { datum: "2026-10-26", uur: "19:30", locatie: "Izegem",  thuis: "Panna FC", uit: "PAYIT FC", link: "https://www.mvbi.be/panna-fc-payit-fc" },
+    { datum: "2026-11-09", uur: "19:30", locatie: "Izegem",  thuis: "PAYIT FC", uit: "L'Abattoir", link: "https://www.mvbi.be/payit-labattoir" },
+    { datum: "2026-11-18", uur: "19:00", locatie: "Kachtem", thuis: "Lagaar Gworks", uit: "PAYIT FC", link: "https://www.mvbi.be/lagaar-gworks-payit-fc" },
+    { datum: "2026-11-25", uur: "19:00", locatie: "Kachtem", thuis: "Bloemgat", uit: "PAYIT FC", link: "https://www.mvbi.be/bloemgat-payit-fc" },
+    { datum: "2026-12-07", uur: "19:30", locatie: "Izegem",  thuis: "Playa", uit: "PAYIT FC", link: "https://www.mvbi.be/playa-payit-fc" },
+    { datum: "2026-12-14", uur: "20:30", locatie: "Izegem",  thuis: "PAYIT FC", uit: "Sanifro ofzo", link: "https://www.mvbi.be/payit-fc-sanifro-ofzo" },
+    { datum: "2026-11-30", uur: "20:30", locatie: "Izegem", thuis: "PAYIT FC", uit: "MBD United", link: "https://www.mvbi.be/payit-fc-mbd-united" },
+    { datum: "2027-01-04", uur: "21:50", locatie: "Kachtem", thuis: "BTW Boys", uit: "PAYIT FC", link: "https://www.mvbi.be/btw-boys-payit-fc" }
   ],
 
   /* ---------------------------------------------------------------- RANGSCHIKKING

@@ -53,6 +53,9 @@ create table if not exists selectie.lineup (
   primary key (match_id, player_id)
 );
 
+-- een match die niet meetelt voor de selectie (bv. last minute verplaatst zonder dat we het wisten)
+alter table selectie.matches add column if not exists counts boolean not null default true;
+
 alter table selectie.players enable row level security;
 alter table selectie.sessions enable row level security;
 alter table selectie.matches enable row level security;
@@ -136,7 +139,7 @@ begin
     from (
       select a.player_id as pid, p.sortkey,
              (select count(*) from lineup l join matches m2 on m2.id = l.match_id
-               where l.player_id = a.player_id and m2.finalized_at is not null and m2.kickoff < v_kick)::int as cnt
+               where l.player_id = a.player_id and m2.finalized_at is not null and m2.counts and m2.kickoff < v_kick)::int as cnt
         from availability a join players p on p.id = a.player_id
        where a.match_id = p_match and a.status = 'ja' and p.active
     ) c;
@@ -269,7 +272,7 @@ begin
     'matches', (select coalesce(jsonb_agg(jsonb_build_object(
                     'id', m.id, 'home', m.home, 'away', m.away, 'place', m.place,
                     'kickoff', m.kickoff, 'deadline', deadline(m.kickoff),
-                    'final', m.finalized_at is not null, 'selectable', selectable(m.id), 'result', m.result,
+                    'final', m.finalized_at is not null, 'selectable', selectable(m.id), 'counts', m.counts, 'result', m.result,
                     'yes', (select coalesce(jsonb_agg(a.player_id), '[]'::jsonb) from availability a where a.match_id = m.id and a.status = 'ja'),
                     'no', (select coalesce(jsonb_agg(a.player_id), '[]'::jsonb) from availability a where a.match_id = m.id and a.status = 'nee'),
                     'lineup', (select coalesce(jsonb_agg(jsonb_build_object('id', l.player_id, 'via', l.via)), '[]'::jsonb) from lineup l where l.match_id = m.id)
@@ -319,6 +322,18 @@ begin
   insert into lineup (match_id, player_id, via)
   select p_match, p.id, 'manueel' from players p where p.id = any (p_players)
   on conflict do nothing;
+  return sel_state(p_token);
+end $$;
+
+-- beheerder: een match wel of niet laten meetellen voor de selecties
+create or replace function public.sel_admin_counts(p_token text, p_match int, p_counts boolean) returns jsonb
+language plpgsql security definer set search_path = selectie, public as $$
+declare
+  v players;
+begin
+  v := auth(p_token);
+  if not v.is_admin then raise exception 'FORBIDDEN'; end if;
+  update matches set counts = coalesce(p_counts, true) where id = p_match;
   return sel_state(p_token);
 end $$;
 
@@ -419,7 +434,7 @@ begin
     grant execute on function public.sel_roster(), public.sel_login(int, text), public.sel_logout(text), public.sel_state(text),
       public.sel_set_availability(text, int, text, int), public.sel_admin_lineup(text, int, int[]),
       public.sel_admin_reset_pin(text, int), public.sel_admin_sync(text, jsonb),
-      public.sel_cron(text, jsonb, text) to anon, authenticated;
+      public.sel_cron(text, jsonb, text), public.sel_admin_counts(text, int, boolean) to anon, authenticated;
   end if;
 end $$;
 

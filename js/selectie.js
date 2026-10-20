@@ -40,10 +40,10 @@
   // aantal matchen dat meetelt voor de selectie van match m: alle afgesloten matchen ervoor
   function countBefore(id, m) {
     var k = t(m.kickoff);
-    return S.matches.filter(function (x) { return x.final && x.kickoff && t(x.kickoff) < k && inLineup(x, id); }).length;
+    return S.matches.filter(function (x) { return x.final && x.counts !== false && x.kickoff && t(x.kickoff) < k && inLineup(x, id); }).length;
   }
   function played(id) {
-    return S.matches.filter(function (x) { return x.final && x.kickoff && t(x.kickoff) <= now() && inLineup(x, id); }).length;
+    return S.matches.filter(function (x) { return x.final && x.counts !== false && x.kickoff && t(x.kickoff) <= now() && inLineup(x, id); }).length;
   }
   function remaining(ms) {
     var min = Math.floor(ms / 60000);
@@ -287,6 +287,8 @@
         S.players.map(function (p) {
           return '<button class="sel-chip' + (has(ed, p.id) ? " on" : "") + '" data-act="edit-toggle" data-m="' + m.id + '" data-p="' + p.id + '">' + esc(p.name) + "</button>";
         }).join("") + '</div><div class="sel-row"><button class="sel-btn primary small" data-act="edit-save" data-m="' + m.id + '"' + (ui.busy || !ui.edit[m.id] ? " disabled" : "") + ">Selectie opslaan (" + ed.length + ")</button></div>");
+      h += '<div class="sel-row"><button class="sel-btn small" data-act="counts" data-m="' + m.id + '" data-s="' + (m.counts === false ? "1" : "0") + '"' + (ui.busy ? " disabled" : "") + ">" +
+        (m.counts === false ? "Wel laten meetellen" : "Niet laten meetellen voor selecties") + "</button></div>";
     }
     return h;
   }
@@ -327,6 +329,7 @@
     if (past.length) {
       h.push('<section class="sel-card"><h2>Gespeeld</h2><div>' + past.map(function (m) {
         return '<article class="sel-match"><div><h3>' + esc(title(m)) + '</h3><p class="sel-note">' + esc(fShort.format(new Date(m.kickoff))) + " · " + m.lineup.length + " spelers</p></div>" +
+          (m.counts === false ? '<p class="sel-note warn">Telt niet mee voor de selecties.</p>' : "") +
           details("pa" + m.id, "Wie speelde mee?", finalView(m, false)) + "</article>";
       }).join("") + "</div></section>");
     }
@@ -365,6 +368,8 @@
       var list = ui.edit[m];
       delete ui.edit[m];
       call("sel_admin_lineup", { p_match: m, p_players: list });
+    } else if (act === "counts") {
+      call("sel_admin_counts", { p_match: m, p_counts: s === "1" });
     } else if (act === "reset-pin") {
       if (confirm === "pin" + p) call("sel_admin_reset_pin", { p_player: p });
       else { ui.confirm = "pin" + p; render(); }

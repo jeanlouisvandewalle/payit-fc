@@ -335,25 +335,78 @@ begin
   return sel_state(p_token);
 end $$;
 
+-- kalender overnemen (uit js/data.js, dat dagelijks met MVBI wordt gelijkgezet)
+create or replace function selectie.sync_matches(p_matches jsonb) returns void
+language plpgsql set search_path = selectie, public as $$
+declare
+  e jsonb;
+  v_kick timestamptz;
+  v_id int;
+begin
+  for e in select * from jsonb_array_elements(p_matches) loop
+    v_kick := case when e->>'date' is null or e->>'time' is null then null
+                   else ((e->>'date') || ' ' || (e->>'time'))::timestamp at time zone 'Europe/Brussels' end;
+    v_id := null;
+    insert into matches (key, home, away, place, kickoff)
+    values (e->>'key', e->>'home', e->>'away', e->>'place', v_kick)
+    on conflict (key) do update set place = excluded.place, kickoff = excluded.kickoff
+      where matches.place is distinct from excluded.place or matches.kickoff is distinct from excluded.kickoff
+    returning id into v_id;
+    -- een afgesloten match die uitgesteld of naar later verplaatst werd: inschrijving gaat weer open
+    if v_id is not null and exists (select 1 from matches where id = v_id and finalized_at is not null
+                                      and (kickoff is null or deadline(kickoff) > now())) then
+      delete from lineup where match_id = v_id;
+      update matches set finalized_at = null, result = null where id = v_id;
+    end if;
+  end loop;
+end $$;
+
 -- beheerder: kalender overnemen uit js/data.js (gebeurt vanzelf wanneer de beheerder de pagina opent)
 create or replace function public.sel_admin_sync(p_token text, p_matches jsonb) returns jsonb
 language plpgsql security definer set search_path = selectie, public as $$
 declare
   v players;
-  e jsonb;
-  v_kick timestamptz;
 begin
   v := auth(p_token);
   if not v.is_admin then raise exception 'FORBIDDEN'; end if;
-  for e in select * from jsonb_array_elements(p_matches) loop
-    v_kick := case when e->>'date' is null or e->>'time' is null then null
-                   else ((e->>'date') || ' ' || (e->>'time'))::timestamp at time zone 'Europe/Brussels' end;
-    insert into matches (key, home, away, place, kickoff)
-    values (e->>'key', e->>'home', e->>'away', e->>'place', v_kick)
-    on conflict (key) do update set place = excluded.place, kickoff = excluded.kickoff
-      where matches.finalized_at is null;
-  end loop;
+  perform sync_matches(p_matches);
   return sel_state(p_token);
+end $$;
+
+-- automatische taak (scripts/update-kalender.mjs): kalender bijwerken en herinneringen bijhouden.
+-- Alleen met het geheime wachtwoord van die taak; hier staat enkel de hash ervan (selectie.config).
+create table if not exists selectie.config (
+  key text primary key,
+  value text not null
+);
+create table if not exists selectie.notices (
+  key text primary key,
+  sent_at timestamptz not null default now()
+);
+alter table selectie.config enable row level security;
+alter table selectie.notices enable row level security;
+
+create or replace function public.sel_cron(p_secret text, p_matches jsonb default null, p_notice text default null) returns jsonb
+language plpgsql security definer set search_path = selectie, public as $$
+begin
+  if p_secret is null or not exists (select 1 from config where key = 'sync_hash'
+                                       and value = encode(sha256(convert_to(p_secret, 'UTF8')), 'hex')) then
+    raise exception 'FORBIDDEN';
+  end if;
+  if p_matches is not null then perform sync_matches(p_matches); end if;
+  if p_notice is not null then insert into notices (key) values (p_notice) on conflict do nothing; end if;
+  perform finalize_due();
+  return jsonb_build_object(
+    'notices', (select coalesce(jsonb_agg(key), '[]'::jsonb) from notices where sent_at > now() - interval '60 days'),
+    'matches', (select coalesce(jsonb_agg(jsonb_build_object(
+                    'key', m.key, 'home', m.home, 'away', m.away, 'place', m.place, 'kickoff', m.kickoff,
+                    'final', m.finalized_at is not null,
+                    'yes', (select count(*) from availability a where a.match_id = m.id and a.status = 'ja'),
+                    'lineup', (select coalesce(jsonb_agg(p.first || ' ' || p.last order by p.sortkey collate "C"), '[]'::jsonb)
+                                 from lineup l join players p on p.id = l.player_id where l.match_id = m.id)
+                  ) order by m.kickoff), '[]'::jsonb)
+                  from matches m where m.kickoff > now() and m.kickoff < now() + interval '3 days')
+  );
 end $$;
 
 -- alleen de sel_-functies zijn van buitenaf aanroepbaar
@@ -365,7 +418,8 @@ begin
     revoke all on schema selectie from anon, authenticated;
     grant execute on function public.sel_roster(), public.sel_login(int, text), public.sel_logout(text), public.sel_state(text),
       public.sel_set_availability(text, int, text, int), public.sel_admin_lineup(text, int, int[]),
-      public.sel_admin_reset_pin(text, int), public.sel_admin_sync(text, jsonb) to anon, authenticated;
+      public.sel_admin_reset_pin(text, int), public.sel_admin_sync(text, jsonb),
+      public.sel_cron(text, jsonb, text) to anon, authenticated;
   end if;
 end $$;
 

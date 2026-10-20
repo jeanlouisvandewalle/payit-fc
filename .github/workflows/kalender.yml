@@ -1,0 +1,43 @@
+# Controleert een paar keer per dag de kalender op mvbi.be (scripts/update-kalender.mjs):
+# past website en selectiedashboard aan, mailt bij een wijziging en stuurt de dag voor elke
+# match een herinnering. Handmatig starten: tabblad "Actions" → "Kalender controleren" → "Run workflow".
+name: Kalender controleren
+
+on:
+  schedule:
+    - cron: "15 5,11,17 * * *"   # 05:15, 11:15 en 17:15 UTC (07:15, 13:15, 19:15 in de zomer)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-bijwerken
+  cancel-in-progress: false
+
+jobs:
+  kalender:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/update-kalender.mjs
+        env:
+          SYNC_SECRET: ${{ secrets.SYNC_SECRET }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+      - name: Wijzigingen opslaan
+        run: |
+          if git diff --quiet -- js/data.js; then
+            echo "Geen wijzigingen."
+            exit 0
+          fi
+          node scripts/build.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898702+github-actions[bot]@users.noreply.github.com"
+          git add -A -- js/data.js '*.html' sitemap.xml
+          git commit -m "Kalender bijgewerkt van MVBI"
+          git pull --rebase
+          git push

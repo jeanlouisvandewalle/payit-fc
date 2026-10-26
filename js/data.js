@@ -113,7 +113,15 @@ window.PAYIT = {
     { datum: "2026-12-07", uur: "19:30", locatie: "Izegem",  thuis: "Playa", uit: "PAYIT FC", link: "https://www.mvbi.be/playa-payit-fc" },
     { datum: "2026-12-14", uur: "20:30", locatie: "Izegem",  thuis: "PAYIT FC", uit: "Sanifro ofzo", link: "https://www.mvbi.be/payit-fc-sanifro-ofzo" },
     { datum: "2026-11-30", uur: "20:30", locatie: "Izegem", thuis: "PAYIT FC", uit: "MBD United", link: "https://www.mvbi.be/payit-fc-mbd-united" },
-    { datum: "2027-01-04", uur: "21:50", locatie: "Kachtem", thuis: "BTW Boys", uit: "PAYIT FC", link: "https://www.mvbi.be/btw-boys-payit-fc" }
+    { datum: "2027-01-04", uur: "21:50", locatie: "Kachtem", thuis: "BTW Boys", uit: "PAYIT FC", link: "https://www.mvbi.be/btw-boys-payit-fc" },
+    { datum: "2027-01-13", uur: "21:00", locatie: "Kachtem", thuis: "PAYIT FC", uit: "FC Plectrum", link: "https://www.mvbi.be/payit-fc-fc-plectrum" },
+    { datum: "2027-01-18", uur: "21:50", locatie: "Kachtem", thuis: "Korazon", uit: "PAYIT FC", link: "https://www.mvbi.be/korazon-payit-fc" },
+    { datum: "2027-01-28", uur: "19:00", locatie: "Izegem", thuis: "PAYIT FC", uit: "FC Elk 'T Zinne", link: "https://www.mvbi.be/payit-fc-fc-elk-tzinne" },
+    { datum: "2027-02-01", uur: "20:00", locatie: "Kachtem", thuis: "Orthopedie Van Parys", uit: "PAYIT FC", link: "https://www.mvbi.be/orthopedie-van-parys-payit-fc" },
+    { datum: "2027-02-15", uur: "21:30", locatie: "Izegem", thuis: "Plectrum - Maison Noire", uit: "PAYIT FC", link: "https://www.mvbi.be/plectrum-maison-noire-payit-fc" },
+    { datum: "2027-02-22", uur: "19:30", locatie: "Izegem", thuis: "PAYIT FC", uit: "MVC Deportivo VDM", link: "https://www.mvbi.be/payit-fc-mvc-deportivo-vdm" },
+    { datum: "2027-03-10", uur: "20:00", locatie: "Kachtem", thuis: "PAYIT FC", uit: "MVC JPV Renovaties", link: "https://www.mvbi.be/payit-fc-mvc-jpv-renovaties" },
+    { datum: "2027-03-15", uur: "20:55", locatie: "Kachtem", thuis: "PAYIT FC", uit: "FC Ariba", link: "https://www.mvbi.be/payit-fc-fc-ariba" }
   ],
 
   /* ---------------------------------------------------------------- RANGSCHIKKING

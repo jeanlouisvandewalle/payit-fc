@@ -106,7 +106,14 @@ window.PAYIT = {
       link: "https://www.mvbi.be/payit-fc-tschroefke",
       verslag: "speeldag-6-tschroefke"
     },
-    { datum: "2026-10-26", uur: "19:30", locatie: "Izegem",  thuis: "Panna FC", uit: "PAYIT FC", link: "https://www.mvbi.be/panna-fc-payit-fc" },
+    {
+      speeldag: 7, datum: "2026-10-26", uur: "19:30", locatie: "Izegem",
+      thuis: "Panna FC", uit: "PAYIT FC", score: [4, 3],
+      doelpunten: { "Louis Azou": 1, "Milan Deryckere": 1, "Jelle Descheemaecker": 1 },
+      quote: "Benen nog op weekend, stembanden nog in Moorslee. En dan toch maar één goal tekort.",
+      link: "https://www.mvbi.be/panna-fc-payit-fc",
+      verslag: "speeldag-7-panna-fc"
+    },
     { datum: "2026-11-09", uur: "19:30", locatie: "Izegem",  thuis: "PAYIT FC", uit: "L'Abattoir", link: "https://www.mvbi.be/payit-labattoir" },
     { datum: "2026-11-18", uur: "19:00", locatie: "Kachtem", thuis: "Lagaar Gworks", uit: "PAYIT FC", link: "https://www.mvbi.be/lagaar-gworks-payit-fc" },
     { datum: "2026-11-25", uur: "19:00", locatie: "Kachtem", thuis: "Bloemgat", uit: "PAYIT FC", link: "https://www.mvbi.be/bloemgat-payit-fc" },
@@ -168,6 +175,31 @@ window.PAYIT = {
      de site sorteert zelf op datum.
      "inhoud" is gewone HTML: gebruik <p>…</p> voor alinea's. */
   blog: [
+    {
+      id: "speeldag-7-panna-fc",
+      titel: "De tapinstallatie wint van de conditie",
+      datum: "2026-10-27",
+      auteur: "De redactie",
+      categorie: "Matchverslag",
+      wedstrijd: 7,
+      intro: "Een intense match tegen Panna FC, met nog een stevig ploegweekend in de benen. In het laatste kwartier sloop er nog een lullige goal binnen: 4–3.",
+      inhoud: `
+        <p>Er zijn betere voorbereidingen op een competitiematch dan een ploegweekend. Dat weten we nu ook officieel. Tegen Panna FC verloren we na een intense wedstrijd met 4–3, en wie eerlijk is, weet dat het weekend daar niet helemaal onschuldig aan was.</p>
+
+        <h3>Een voorbereiding van wereldniveau</h3>
+        <p>Het voorbije weekend trok PAYIT FC er samen met nog wat andere wereldtoppers op uit. Sportief werd er zeker gepresteerd: het aantal wandelingen van en naar de tapinstallatie was indrukwekkend, zowel in afstand als in frequentie. Alleen bleek maandagavond dat zulke duurlopen niet meteen omgezet worden in frisse benen op een minivoetbalveld.</p>
+        <p>Daarnaast werd er dat weekend ook luidkeels gesupporterd tegen Moorslee. Met zoveel overgave dat de stembanden er nog niet van bekomen waren. Het gevolg: de communicatie op het veld klonk iets minder luid dan gewoonlijk. "Man!", "Draaien!" en "Laat lopen!" kwamen er eerder uit als een schorre fluistering.</p>
+
+        <h3>Een intense match</h3>
+        <p>Toch werd het allesbehalve een slechte match. Het was een intense wedstrijd waarin geen van beide ploegen veel weggaf, en waarin we tot op het einde in de match bleven. Drie keer vonden we het net: <strong>Louis Azou</strong>, <strong>Milan Deryckere</strong> en <strong>Jelle Descheemaecker</strong> scoorden elk één keer.</p>
+
+        <h3>Dat laatste kwartier</h3>
+        <p>In het laatste kwartier viel dan toch de beslissing, en niet in ons voordeel. Een goal die je nergens in een samenvatting zou terugvinden, het soort doelpunt waarbij iedereen even naar elkaar kijkt met de vraag hoe dat nu weer binnen ging. Lullig, maar het telt. 4–3 voor Panna FC.</p>
+
+        <h3>En nu?</h3>
+        <p>Na zes matchen staat de teller op vier overwinningen en twee nederlagen, met 52 goals voor en 22 tegen. De benen krijgen nu twee weken om te herstellen, de stembanden ook. Volgende opdracht: L'Abattoir, maandag 9 november om 19u30 in Izegem. Uitgerust, uitgeslapen en met stem.</p>
+      `
+    },
     {
       id: "speeldag-6-tschroefke",
       titel: "Vijf man, één missie",

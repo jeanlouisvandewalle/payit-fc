@@ -110,7 +110,7 @@ window.PAYIT = {
       speeldag: 7, datum: "2026-10-26", uur: "19:30", locatie: "Izegem",
       thuis: "Panna FC", uit: "PAYIT FC", score: [4, 3],
       doelpunten: { "Louis Azou": 1, "Milan Deryckere": 1, "Jelle Descheemaecker": 1 },
-      quote: "Benen nog op weekend, stembanden nog in Moorslee. En dan toch maar één goal tekort.",
+      quote: "Benen nog op weekend, stembanden nog in Westouter. En dan toch maar één goal tekort.",
       link: "https://www.mvbi.be/panna-fc-payit-fc",
       verslag: "speeldag-7-panna-fc"
     },
@@ -188,7 +188,7 @@ window.PAYIT = {
 
         <h3>Een voorbereiding van wereldniveau</h3>
         <p>Het voorbije weekend trok PAYIT FC er samen met nog wat andere wereldtoppers op uit. Sportief werd er zeker gepresteerd: het aantal wandelingen van en naar de tapinstallatie was indrukwekkend, zowel in afstand als in frequentie. Alleen bleek maandagavond dat zulke duurlopen niet meteen omgezet worden in frisse benen op een minivoetbalveld.</p>
-        <p>Daarnaast werd er dat weekend ook luidkeels gesupporterd tegen Moorslee. Met zoveel overgave dat de stembanden er nog niet van bekomen waren. Het gevolg: de communicatie op het veld klonk iets minder luid dan gewoonlijk. "Man!", "Draaien!" en "Laat lopen!" kwamen er eerder uit als een schorre fluistering.</p>
+        <p>Daarnaast werd er dat weekend in Westouter ook luidkeels gesupporterd tegen Moorslee. Met zoveel overgave dat de stembanden er nog niet van bekomen waren. Het gevolg: de communicatie op het veld klonk iets minder luid dan gewoonlijk. "Man!", "Draaien!" en "Laat lopen!" kwamen er eerder uit als een schorre fluistering.</p>
 
         <h3>Een intense match</h3>
         <p>Toch werd het allesbehalve een slechte match. Het was een intense wedstrijd waarin geen van beide ploegen veel weggaf, en waarin we tot op het einde in de match bleven. Drie keer vonden we het net: <strong>Louis Azou</strong>, <strong>Milan Deryckere</strong> en <strong>Jelle Descheemaecker</strong> scoorden elk één keer.</p>

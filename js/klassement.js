@@ -1,7 +1,7 @@
 /* Automatisch gegenereerd door scripts/update-klassement.mjs — niet met de hand aanpassen. */
 window.PAYIT_KLASSEMENT = {
   "bron": "https://www.mvbi.be/klassement",
-  "bijgewerkt": "2026-11-10",
+  "bijgewerkt": "2026-11-13",
   "reeksen": [
     {
       "naam": "Competitie",
@@ -18,16 +18,16 @@ window.PAYIT_KLASSEMENT = {
         ["MBD United", 7, 4, 1, 2, 39, 30, 13],
         ["BTW Boys", 8, 4, 0, 4, 38, 38, 12],
         ["FC Plectrum", 8, 3, 1, 4, 40, 37, 10],
+        ["MVC De Lagaar - Gworks", 7, 4, 0, 3, 30, 31, 9],
         ["Q-Team", 7, 3, 0, 4, 38, 44, 9],
-        ["MVC De Lagaar - Gworks", 6, 3, 0, 3, 20, 29, 9],
         ["Driemo", 6, 2, 1, 3, 36, 28, 7],
         ["L'Abattoir", 6, 1, 1, 4, 26, 42, 4],
         ["T'Schroefke", 7, 1, 1, 5, 20, 53, 4],
         ["Sanifro ofzo", 6, 1, 1, 4, 16, 26, 4],
-        ["FC Elk 'T Zinne", 7, 1, 0, 6, 22, 37, 3],
+        ["FC Elk 'T Zinne", 8, 2, 0, 6, 28, 41, 3],
         ["Korazon", 8, 1, 0, 7, 21, 44, 3],
-        ["Playa", 7, 0, 2, 5, 22, 52, 2],
-        ["FC De Ondank", 5, 0, 1, 4, 10, 50, 1],
+        ["Playa", 8, 0, 2, 6, 24, 62, 2],
+        ["FC De Ondank", 6, 0, 1, 5, 14, 56, 1],
         ["De Kasjotters", 7, 0, 0, 7, 11, 96, 0]
       ]
     }

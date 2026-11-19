@@ -7,10 +7,10 @@ window.PAYIT_KLASSEMENT = {
       "naam": "Competitie",
       "rijen": [
         ["FC Ariba", 9, 8, 0, 1, 110, 21, 24],
+        ["MVC Deportivo VDM", 8, 7, 1, 0, 65, 24, 22],
         ["T'Bloemgat", 8, 7, 0, 1, 56, 21, 21],
         ["Checked by Vanhulle", 8, 7, 0, 1, 55, 33, 21],
         ["Panna FC", 9, 7, 0, 2, 50, 31, 21],
-        ["MVC Deportivo VDM", 7, 6, 1, 0, 55, 24, 19],
         ["PayitFC", 8, 6, 0, 2, 74, 26, 18],
         ["MBD United", 8, 5, 1, 2, 46, 33, 16],
         ["Plectrum - Maison Noire", 8, 5, 1, 2, 43, 35, 16],
@@ -25,7 +25,7 @@ window.PAYIT_KLASSEMENT = {
         ["L'Abattoir", 7, 1, 1, 5, 28, 48, 4],
         ["T'Schroefke", 8, 1, 1, 6, 24, 60, 4],
         ["FC De Ondank", 7, 1, 1, 5, 19, 56, 4],
-        ["Sanifro ofzo", 6, 1, 1, 4, 16, 26, 4],
+        ["Sanifro ofzo", 7, 1, 1, 5, 16, 36, 4],
         ["Korazon", 9, 1, 0, 8, 25, 51, 3],
         ["Playa", 9, 0, 2, 7, 28, 72, 2],
         ["De Kasjotters", 8, 0, 0, 8, 11, 101, 0]

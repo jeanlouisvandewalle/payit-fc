@@ -1,13 +1,13 @@
 /* Automatisch gegenereerd door scripts/update-klassement.mjs — niet met de hand aanpassen. */
 window.PAYIT_KLASSEMENT = {
   "bron": "https://www.mvbi.be/klassement",
-  "bijgewerkt": "2026-11-24",
+  "bijgewerkt": "2026-11-25",
   "reeksen": [
     {
       "naam": "Competitie",
       "rijen": [
         ["MVC Deportivo VDM", 9, 8, 1, 0, 86, 24, 25],
-        ["FC Ariba", 9, 8, 0, 1, 110, 21, 24],
+        ["FC Ariba", 10, 8, 1, 1, 120, 21, 24],
         ["Checked by Vanhulle", 9, 8, 0, 1, 76, 36, 24],
         ["T'Bloemgat", 8, 7, 0, 1, 56, 21, 21],
         ["Panna FC", 9, 7, 0, 2, 50, 31, 21],
@@ -27,7 +27,7 @@ window.PAYIT_KLASSEMENT = {
         ["Sanifro ofzo", 8, 1, 1, 6, 19, 43, 4],
         ["FC De Ondank", 8, 1, 1, 6, 19, 77, 4],
         ["Korazon", 10, 1, 0, 9, 29, 56, 3],
-        ["Playa", 9, 0, 2, 7, 28, 72, 2],
+        ["Playa", 10, 0, 3, 7, 28, 82, 2],
         ["De Kasjotters", 9, 0, 0, 9, 14, 122, 0]
       ]
     }

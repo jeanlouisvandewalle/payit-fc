@@ -1,7 +1,7 @@
 /* Automatisch gegenereerd door scripts/update-klassement.mjs — niet met de hand aanpassen. */
 window.PAYIT_KLASSEMENT = {
   "bron": "https://www.mvbi.be/klassement",
-  "bijgewerkt": "2026-11-26",
+  "bijgewerkt": "2026-11-27",
   "reeksen": [
     {
       "naam": "Competitie",
@@ -16,12 +16,12 @@ window.PAYIT_KLASSEMENT = {
         ["MBD United", 8, 5, 1, 2, 46, 33, 16],
         ["Plectrum - Maison Noire", 8, 5, 1, 2, 43, 35, 16],
         ["MVC JPV Renovaties", 8, 5, 1, 2, 29, 48, 16],
-        ["BTW Boys", 9, 5, 0, 4, 45, 42, 15],
+        ["BTW Boys", 10, 6, 0, 4, 50, 46, 15],
         ["FC Plectrum", 10, 4, 1, 5, 50, 49, 13],
         ["Q-Team", 8, 4, 0, 4, 45, 48, 12],
         ["MVC De Lagaar - Gworks", 8, 4, 0, 4, 34, 43, 12],
         ["Driemo", 8, 3, 1, 4, 48, 38, 10],
-        ["FC Elk 'T Zinne", 8, 2, 0, 6, 28, 41, 6],
+        ["FC Elk 'T Zinne", 9, 2, 0, 7, 32, 46, 6],
         ["L'Abattoir", 7, 1, 1, 5, 28, 48, 4],
         ["T'Schroefke", 9, 1, 1, 7, 27, 69, 4],
         ["Sanifro ofzo", 8, 1, 1, 6, 19, 43, 4],
